@@ -21,8 +21,8 @@ def compile(file):
         )
 
 def clean_executable(file):
-    if os.path.exists(f"./{file}.exe"):
-        os.remove(f"./{file}.exe")
+    if os.path.exists(f"./{file}"):
+        os.remove(f"./{file}")
 
 def run_program(*input):
     clean_executable(problem)
@@ -31,7 +31,7 @@ def run_program(*input):
     if compiled.returncode != 0:
         return None, None, True
 
-    commands = [f"./{problem}.exe"]
+    commands = [f"./{problem}"]
     for i in input:
         commands.append(i)
 
