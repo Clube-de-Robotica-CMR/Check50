@@ -13,6 +13,8 @@ problem = "desafio"
 required_files = ["desafio.c"]
 missing_files = []
 
+passed = True
+
 def compile(file):
     return subprocess.run(
         ["make", file],
@@ -56,6 +58,7 @@ def test_compile():
     compiled = compile(problem)
 
     if compiled.returncode != 0:
+        passed = False
         return print(f"{RED} :( O programa não compila\n    Esperava código de retorno 0, não {compiled.returncode} {RESET}")
     
     print(f"{GREEN} :) O programa compila {RESET}")
@@ -72,6 +75,7 @@ def test_model():
     condition = (expected_stdout in stdout) and (code == expected_code)
     
     if not condition:
+        passed = False
         return print(f"{RED} :( O programa não passa no texte x\n    Esperava '{expected_stdout}', mas recebeu '{stdout}' {RESET}")
     
     print(f"{GREEN} :) O programa passa no teste x {RESET}")
@@ -81,3 +85,6 @@ test_files_exist()
 test_compile()
 test_model()
 clean_executable(problem)
+
+if not passed:
+    sys.exit(1)
