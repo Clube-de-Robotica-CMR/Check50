@@ -60,7 +60,7 @@ def test_compile():
 
     if compiled.returncode != 0:
         passed = False
-        return print(f"{RED} :( O programa não compila\n    Esperava código de retorno 0, não {compiled.returncode} {RESET}")
+        return print(f"{RED} :( O programa não compila\n    {RED} Esperava código de retorno 0, não {compiled.returncode} {RESET}")
     
     print(f"{GREEN} :) O programa compila {RESET}")
 
@@ -71,14 +71,14 @@ def test_model():
     stdout, code, error = run_program()
 
     if error:
-        return print(f"{YELLOW} :| O programa passa no teste x?\n    Não é possível checar até que a carinha vire um sorriso {RESET}")
+        return print(f"{YELLOW} :| O programa passa no teste x?\n    {YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
         
 
     condition = (expected_stdout in stdout) and (code == expected_code)
     
     if not condition:
         passed = False
-        return print(f"{RED} :( O programa não passa no texte x\n    Esperava '{expected_stdout}', mas recebeu '{stdout}' {RESET}")
+        return print(f"{RED} :( O programa não passa no texte x\n    {RED} Esperava '{expected_stdout}', mas recebeu '{stdout}' {RESET}")
     
     print(f"{GREEN} :) O programa passa no teste x {RESET}")
 
