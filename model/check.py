@@ -55,6 +55,7 @@ def test_files_exist():
     print(f"{GREEN} :) O(s) arquivo(s) {files_str} existe(m) {RESET}")
 
 def test_compile():
+    global passed
     compiled = compile(problem)
 
     if compiled.returncode != 0:
@@ -64,6 +65,7 @@ def test_compile():
     print(f"{GREEN} :) O programa compila {RESET}")
 
 def test_model():
+    global passed
     expected_stdout = "Funcionou legal"
     expected_code = 0
     stdout, code, error = run_program()
