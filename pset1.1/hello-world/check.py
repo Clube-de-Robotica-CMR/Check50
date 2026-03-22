@@ -9,8 +9,8 @@ YELLOW = "\033[93m"
 RESET = "\033[0m"  # Essencial para a cor não "vazar" para o resto do terminal
 BOLD = "\033[1m"
 
-problem = "desafio"
-required_files = ["desafio.c"]
+problem = "hello"
+required_files = ["hello.c"]
 missing_files = []
 
 passed = True
@@ -23,8 +23,8 @@ def compile(file):
         )
 
 def clean_executable(file):
-    if os.path.exists(f"./{file}.exe"):
-        os.remove(f"./{file}.exe")
+    if os.path.exists(f"./{file}"):
+        os.remove(f"./{file}")
 
 def run_program(*input):
     clean_executable(problem)
@@ -48,11 +48,15 @@ def test_files_exist():
 
     if len(missing_files) != 0:
         mfiles_str = ", ".join(missing_files)
-        print(f"{RED} :( O(s) arquivo(s) {mfiles_str} não existe(m) {RESET}")
+        print(f"{RED} :( O arquivo {mfiles_str} não existe {RESET}")
         return sys.exit(1)
 
-    files_str = ", ".join(required_files)
-    print(f"{GREEN} :) O(s) arquivo(s) {files_str} existe(m) {RESET}")
+    if len(required_files) != 1:
+        files_str = ", ".join(required_files)
+    else:
+        files_str = required_files[0]
+
+    print(f"{GREEN} :) O arquivo {files_str} existe {RESET}")
 
 def test_compile():
     global passed
@@ -64,29 +68,29 @@ def test_compile():
     
     print(f"{GREEN} :) O programa compila {RESET}")
 
-def test_model():
+def test_hello():
     global passed
-    expected_stdout = "Funcionou legal"
+    expected_stdout = "hello, world"
     expected_code = 0
     stdout, code, error = run_program()
 
     if error:
-        return print(f"{YELLOW} :| O programa passa no teste x?\n    {YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
+        return print(f"{YELLOW} :| O programa passa no teste?\n    {YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
         
 
     condition = (expected_stdout in stdout) and (code == expected_code)
     
     if not condition:
         passed = False
-        return print(f"{RED} :( O programa não passa no texte x\n    {RED} Esperava '{expected_stdout}', mas recebeu '{stdout}' {RESET}")
+        return print(f"{RED} :( O programa não passou no teste\n    {RED} Esperava '{expected_stdout}', mas recebeu '{stdout}' {RESET}")
     
-    print(f"{GREEN} :) O programa passa no teste x {RESET}")
+    print(f"{GREEN} :) O programa imprime 'hello, world' {RESET}")
 
 print("Verificando resultados...")
 test_files_exist()
 test_compile()
 
-test_model()
+test_hello()
 
 clean_executable(problem)
 

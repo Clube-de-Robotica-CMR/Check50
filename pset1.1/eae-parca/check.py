@@ -23,8 +23,8 @@ def compile(file):
         )
 
 def clean_executable(file):
-    if os.path.exists(f"./{file}.exe"):
-        os.remove(f"./{file}.exe")
+    if os.path.exists(f"./{file}"):
+        os.remove(f"./{file}")
 
 def run_program(*input):
     clean_executable(problem)
@@ -64,29 +64,29 @@ def test_compile():
     
     print(f"{GREEN} :) O programa compila {RESET}")
 
-def test_model():
+def test_davi():
     global passed
-    expected_stdout = "Funcionou legal"
+    expected_stdout = "Eae, Davi"
     expected_code = 0
     stdout, code, error = run_program()
 
     if error:
-        return print(f"{YELLOW} :| O programa passa no teste x?\n    {YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
+        return print(f"{YELLOW} :| O programa imprime 'Eae, Davi'\n    {YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
         
 
     condition = (expected_stdout in stdout) and (code == expected_code)
     
     if not condition:
         passed = False
-        return print(f"{RED} :( O programa não passa no texte x\n    {RED} Esperava '{expected_stdout}', mas recebeu '{stdout}' {RESET}")
+        return print(f"{RED} :( O programa imprime 'Eae, Davi'\n    {RED} Esperava '{expected_stdout}', mas recebeu '{stdout}' {RESET}")
     
-    print(f"{GREEN} :) O programa passa no teste x {RESET}")
+    print(f"{GREEN} :) O programa imprime 'Eae, Davi' {RESET}")
 
 print("Verificando resultados...")
 test_files_exist()
 test_compile()
 
-test_model()
+test_davi()
 
 clean_executable(problem)
 
