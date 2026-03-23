@@ -50,7 +50,9 @@ def run_reference(input="", input_cli=""):
     if compiled.returncode != 0:
         return None, None, True
 
-    commands = [f"./{reference} {input_cli}"]
+    commands = [f"./{problem}"]
+    if input_cli != "":
+        commands.append(input_cli)
 
     result = subprocess.run(commands, input=input, capture_output=True, text=True)
 
