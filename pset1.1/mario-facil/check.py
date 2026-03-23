@@ -52,7 +52,7 @@ def run_reference(input="", input_cli=""):
     if compiled.returncode != 0:
         return None, None, True
 
-    commands = [f"./{problem}"]
+    commands = [f"./{reference}"]
     if input_cli != "":
         commands.append(input_cli)
 
