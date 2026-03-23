@@ -9,8 +9,8 @@ YELLOW = "\033[93m"
 RESET = "\033[0m"  # Essencial para a cor não "vazar" para o resto do terminal
 BOLD = "\033[1m"
 
-problem = "desafio"
-required_files = ["desafio.c"]
+problem = "eae"
+required_files = ["eae.c"]
 missing_files = []
 
 passed = True
