@@ -9,8 +9,8 @@ YELLOW = "\033[93m"
 RESET = "\033[0m"  # Essencial para a cor não "vazar" para o resto do terminal
 BOLD = "\033[1m"
 
-problem = "desafio"
-required_files = ["desafio.c"]
+problem = "eae"
+required_files = ["eae.c"]
 missing_files = []
 
 passed = True
@@ -26,18 +26,17 @@ def clean_executable(file):
     if os.path.exists(f"./{file}"):
         os.remove(f"./{file}")
 
-def run_program(*input):
+def run_program(input="", input_cli=""):
     clean_executable(problem)
     compiled = compile(problem)
     
     if compiled.returncode != 0:
         return None, None, True
 
-    commands = [f"./{problem}"]
-    for i in input:
-        commands.append(i)
+    commands = [f"./{problem} {input_cli}"]
+    
 
-    result = subprocess.run(commands, capture_output=True, text=True)
+    result = subprocess.run(commands, input=input, capture_output=True, text=True)
 
     return result.stdout, result.returncode, False
 
@@ -66,9 +65,9 @@ def test_compile():
 
 def test_davi():
     global passed
-    expected_stdout = "Eae, Davi"
+    expected_stdout = "Qual o seu nome? Eae, Davi"
     expected_code = 0
-    stdout, code, error = run_program()
+    stdout, code, error = run_program("Davi")
 
     if error:
         return print(f"{YELLOW} :| O programa imprime 'Eae, Davi'\n    {YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
