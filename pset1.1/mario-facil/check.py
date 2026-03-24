@@ -86,7 +86,7 @@ def test_compile():
 def test_valid_height():
     global passed
     height = str(random.randint(1, 8))
-    expected_stdout, expected_code, e = run_reference(height)
+    expected_stdout, expected_code, e = run_reference(input_cli=height)
     stdout, code, error = run_program(height)
 
     if error:
@@ -97,7 +97,7 @@ def test_valid_height():
     
     if not condition:
         passed = False
-        return print(f"{RED} :( Teste com altura válida\n    {RED} Esperava '{expected_stdout}', mas recebeu '{stdout}' {RESET}")
+        return print(f"{RED} :( Teste com altura válida\n    {RED} Esperava: \n{expected_stdout} Recebeu: \n{stdout}{RESET}")
     
     print(f"{GREEN} :) Teste com altura válida{RESET}")
 
