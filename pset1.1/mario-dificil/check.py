@@ -19,8 +19,10 @@ reference = "mario-check"
 passed = True
 
 def compile(file):
+    compile_cmd = ["gcc", file + ".c", "lib/cs50.c", "-Ilib", "-o", file]
+
     return subprocess.run(
-        ["make", file],
+        compile_cmd,
         stdout=subprocess.DEVNULL,
         stderr=subprocess.DEVNULL
         )
