@@ -99,7 +99,7 @@ def test_valid_height():
     
     if not condition:
         passed = False
-        return print(f"{RED} :( Teste com altura válida\n    {RED} Esperava: \n{expected_stdout} Recebeu: \n{stdout}{RESET}")
+        return print(f"{RED} :( Teste com altura válida\n    {RED} Esperava: \n{RED}{expected_stdout} Recebeu: \n{RED}{stdout}{RESET}")
     
     print(f"{GREEN} :) Teste com altura válida{RESET}")
 
