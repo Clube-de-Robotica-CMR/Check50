@@ -1,9 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int main(int argc, char* argv[])
+int main()
 {
-    int h = atoi(argv[1]);
+    int h;
+    do
+    {
+        printf("Altura: ");
+        scanf("%i", &h);
+    } while (h < 1 || h > 8);
 
     for (int i = 0; i < h; i++)
     {
