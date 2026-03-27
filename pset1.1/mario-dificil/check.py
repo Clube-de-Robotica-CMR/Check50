@@ -88,7 +88,7 @@ def test_compile():
 def test_valid_height():
     global passed
     height = str(random.randint(1, 8))
-    expected_stdout, expected_code, e = run_reference(input_cli=height)
+    expected_stdout, expected_code, e = run_reference(height)
     stdout, code, error = run_program(height)
 
     if error:
