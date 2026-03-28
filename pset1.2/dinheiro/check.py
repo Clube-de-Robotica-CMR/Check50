@@ -36,6 +36,15 @@ def compile(file):
         stderr=subprocess.DEVNULL
         )
 
+def compile_ref():
+    compile_cmd = ["gcc", reference + ".c", "-o", reference]
+    
+    return subprocess.run(
+        compile_cmd,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL
+        )
+
 def clean_executable(*files):
     for file in files:
         if os.path.exists(f"./{file}"):
@@ -57,6 +66,12 @@ def run_program(input="", input_cli=""):
     return result.stdout, result.returncode, False
 
 def run_reference(input="", input_cli=""):
+    clean_executable(reference)
+    compiled = compile_ref()
+    
+    if compiled.returncode != 0:
+        return None, None, True
+
     commands = [f"./{reference}"]
     if input_cli != "":
         commands.append(input_cli)
