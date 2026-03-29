@@ -116,14 +116,17 @@ def test_25():
     output = re.findall(r'\d+', stdout)
     ref = re.findall(r'\d+', expected_stdout)
 
+    output = output[-1]
+    ref = ref[-1]
+
     if output and ref:
-        condition = (output[-1] == ref[-1])
+        condition = (output == ref)
     else:
         condition = False 
 
     if not condition:
         passed = False
-        return print(f"{RED} :( Teste com 25 centavos\n    {RED} Esperava: {expected_stdout} \n    {RED} Recebeu: {stdout}{RESET}")
+        return print(f"{RED} :( Teste com 25 centavos\n    {RED} Esperava: {ref or expected_stdout} \n    {RED} Recebeu: {output or stdout}{RESET}")
     
     print(f"{GREEN} :) Teste com 25 centavos{RESET}")
     
@@ -140,14 +143,17 @@ def test_10():
     output = re.findall(r'\d+', stdout)
     ref = re.findall(r'\d+', expected_stdout)
 
+    output = output[-1]
+    ref = ref[-1]
+
     if output and ref:
-        condition = (output[-1] == ref[-1])
+        condition = (output == ref)
     else:
         condition = False 
 
     if not condition:
         passed = False
-        return print(f"{RED} :( Teste com 10 centavos\n    {RED} Esperava: {expected_stdout} \n    {RED} Recebeu: {stdout}{RESET}")
+        return print(f"{RED} :( Teste com 10 centavos\n    {RED} Esperava: {ref or expected_stdout} \n    {RED} Recebeu: {output or stdout}{RESET}")
     
     print(f"{GREEN} :) Teste com 10 centavos{RESET}")
   
@@ -161,18 +167,20 @@ def test_5():
     if error:
         return print(f"{YELLOW} :| Teste com 5 centavos\n    {YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
     
-    
     output = re.findall(r'\d+', stdout)
     ref = re.findall(r'\d+', expected_stdout)
 
+    output = output[-1]
+    ref = ref[-1]
+
     if output and ref:
-        condition = (output[-1] == ref[-1])
+        condition = (output == ref)
     else:
         condition = False 
 
     if not condition:
         passed = False
-        return print(f"{RED} :( Teste com 5 centavos\n    {RED} Esperava: {expected_stdout} \n    {RED} Recebeu: {stdout}{RESET}")
+        return print(f"{RED} :( Teste com 5 centavos\n    {RED} Esperava: {ref or expected_stdout} \n    {RED} Recebeu: {output or stdout}{RESET}")
     
     print(f"{GREEN} :) Teste com 5 centavos{RESET}")
   
@@ -186,18 +194,20 @@ def test_1():
     if error:
         return print(f"{YELLOW} :| Teste com 1 centavo\n    {YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
     
-    
     output = re.findall(r'\d+', stdout)
     ref = re.findall(r'\d+', expected_stdout)
 
+    output = output[-1]
+    ref = ref[-1]
+
     if output and ref:
-        condition = (output[-1] == ref[-1])
+        condition = (output == ref)
     else:
         condition = False 
 
     if not condition:
         passed = False
-        return print(f"{RED} :( Teste com 1 centavo\n    {RED} Esperava: {expected_stdout} \n    {RED} Recebeu: {stdout}{RESET}")
+        return print(f"{RED} :( Teste com 1 centavo\n    {RED} Esperava: {ref or expected_stdout} \n    {RED} Recebeu: {output or stdout}{RESET}")
     
     print(f"{GREEN} :) Teste com 1 centavo{RESET}")
   
@@ -215,14 +225,17 @@ def test_random_value():
     output = re.findall(r'\d+', stdout)
     ref = re.findall(r'\d+', expected_stdout)
 
+    output = output[-1]
+    ref = ref[-1]
+
     if output and ref:
-        condition = (output[-1] == ref[-1])
+        condition = (output == ref)
     else:
         condition = False 
 
     if not condition:
         passed = False
-        return print(f"{RED} :( Teste com valor aleatório\n    {RED} Esperava: {expected_stdout} \n    {RED} Recebeu: {stdout}{RESET}")
+        return print(f"{RED} :( Teste com valor aleatório\n    {RED} Esperava: {ref or expected_stdout} \n    {RED} Recebeu: {output or stdout}{RESET}")
     
     print(f"{GREEN} :) Teste com valor aleatório{RESET}")
 

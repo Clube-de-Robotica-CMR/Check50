@@ -106,9 +106,9 @@ def test_valid_value():
     if error:
         return print(f"{YELLOW} :| Teste com valor válido\n    {YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
     
-    output = re.findall(r"[-+]?\d*\.\d+|\d+", stdout)
+    stdout = (stdout.split())[-1]
 
-    condition = (expected_stdout in output) 
+    condition = (expected_stdout == stdout) 
 
     if not condition:
         passed = False

@@ -105,7 +105,13 @@ def test_valid_value():
     if error:
         return print(f"{YELLOW} :| Teste com valor válido\n    {YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
     
-    condition = (expected_stdout.strip() in stdout.strip()) 
+    stdout = stdout.split()
+    output = []
+    for i in range(1, stdout):
+        output.append(stdout[i])
+    output = "".join(output)
+
+    condition = (expected_stdout.strip() in output.strip()) 
 
     if not condition:
         passed = False

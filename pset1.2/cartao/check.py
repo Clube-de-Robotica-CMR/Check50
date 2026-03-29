@@ -104,11 +104,14 @@ def test_AMEX():
     if error:
         return print(f"{YELLOW} :| Teste com American Express (AMEX)\n    {YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
     
-    condition = (expected_stdout.strip() in stdout.upper().strip()) 
+    stdout = stdout.split()
+    output = stdout[-1]
+
+    condition = (expected_stdout.strip() in output.upper().strip()) 
 
     if not condition:
         passed = False
-        return print(f"{RED} :( Teste com American Express (AMEX)\n    {RED} Esperava: {expected_stdout} \n    {RED} Recebeu: {stdout}{RESET}")
+        return print(f"{RED} :( Teste com American Express (AMEX)\n    {RED} Esperava: {expected_stdout} \n    {RED} Recebeu: {output}{RESET}")
     
     print(f"{GREEN} :) Teste com American Express (AMEX){RESET}")
 
@@ -123,11 +126,14 @@ def test_MASTERCARD():
     if error:
         return print(f"{YELLOW} :| Teste com Mastercard\n    {YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
     
-    condition = (expected_stdout.strip() in stdout.upper().strip()) 
+    stdout = stdout.split()
+    output = stdout[-1]
+
+    condition = (expected_stdout.strip() in output.upper().strip()) 
 
     if not condition:
         passed = False
-        return print(f"{RED} :( Teste com Mastercard\n    {RED} Esperava: {expected_stdout} \n    {RED} Recebeu: {stdout}{RESET}")
+        return print(f"{RED} :( Teste com Mastercard\n    {RED} Esperava: {expected_stdout} \n    {RED} Recebeu: {output}{RESET}")
     
     print(f"{GREEN} :) Teste com Mastercard{RESET}")
 
@@ -142,11 +148,14 @@ def test_VISA13():
     if error:
         return print(f"{YELLOW} :| Teste com Visa (13 dígitos)\n    {YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
     
-    condition = (expected_stdout.strip() in stdout.upper().strip()) 
+    stdout = stdout.split()
+    output = stdout[-1]
+
+    condition = (expected_stdout.strip() in output.upper().strip()) 
 
     if not condition:
         passed = False
-        return print(f"{RED} :( Teste com Visa (13 dígitos)\n    {RED} Esperava: {expected_stdout} \n    {RED} Recebeu: {stdout}{RESET}")
+        return print(f"{RED} :( Teste com Visa (13 dígitos)\n    {RED} Esperava: {expected_stdout} \n    {RED} Recebeu: {output}{RESET}")
     
     print(f"{GREEN} :) Teste com Visa (13 dígitos){RESET}")
 
@@ -161,11 +170,14 @@ def test_VISA16():
     if error:
         return print(f"{YELLOW} :| Teste com Visa (16 dígitos)\n    {YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
     
-    condition = (expected_stdout.strip() in stdout.upper().strip()) 
+    stdout = stdout.split()
+    output = stdout[-1]
+
+    condition = (expected_stdout.strip() in output.upper().strip()) 
 
     if not condition:
         passed = False
-        return print(f"{RED} :( Teste com Visa (16 dígitos)\n    {RED} Esperava: {expected_stdout} \n    {RED} Recebeu: {stdout}{RESET}")
+        return print(f"{RED} :( Teste com Visa (16 dígitos)\n    {RED} Esperava: {expected_stdout} \n    {RED} Recebeu: {output}{RESET}")
     
     print(f"{GREEN} :) Teste com Visa (16 dígitos){RESET}")
 
@@ -180,11 +192,14 @@ def test_invalid():
     if error:
         return print(f"{YELLOW} :| Teste com número inválido\n    {YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
     
-    condition = (expected_stdout.strip() in stdout.upper().strip()) 
+    stdout = stdout.split()
+    output = stdout[-1]
+
+    condition = (expected_stdout.strip() in output.upper().strip()) 
 
     if not condition:
         passed = False
-        return print(f"{RED} :( Teste com número inválido\n    {RED} Esperava: {expected_stdout} \n    {RED} Recebeu: {stdout}{RESET}")
+        return print(f"{RED} :( Teste com número inválido\n    {RED} Esperava: {expected_stdout} \n    {RED} Recebeu: {output}{RESET}")
     
     print(f"{GREEN} :) Teste com número inválido{RESET}")
 
