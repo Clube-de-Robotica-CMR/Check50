@@ -107,7 +107,7 @@ def test_valid_value():
     
     stdout = stdout.split()
     output = []
-    for i in range(1, stdout):
+    for i in range(1, len(stdout)):
         output.append(stdout[i])
     output = "".join(output)
 
