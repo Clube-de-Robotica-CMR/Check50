@@ -97,7 +97,7 @@ def test_valid_value():
     global passed
 
     times = random.randint(1, 10)
-    expected_stdout = "Quantos alertas deseja emitir? BIP\n"+ "BIP!\n" * times-1
+    expected_stdout = "Quantos alertas deseja emitir? BIP\n" + ("BIP!\n" * (times-1))
     expected_code = 0
 
     stdout, code, error = run_program(str(times))
