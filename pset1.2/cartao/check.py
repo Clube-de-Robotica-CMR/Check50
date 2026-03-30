@@ -36,7 +36,9 @@ def compile(file):
     compile_cmd.append(file)
 
     return subprocess.run(
-        compile_cmd
+        compile_cmd,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL
         )
 
 def clean_executable(*files):
