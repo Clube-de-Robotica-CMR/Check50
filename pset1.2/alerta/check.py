@@ -110,7 +110,6 @@ def test_valid_value():
 
     if not condition:
         passed = False
-        print(condition)
         return print(f"{RED} :( Teste com valor válido\n    {RED} Esperava: \n{expected_stdout} \n    {RED} Recebeu: \n{stdout}{RESET}")
     
     print(f"{GREEN} :) Teste com valor válido{RESET}")
