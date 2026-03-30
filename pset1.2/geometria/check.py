@@ -123,7 +123,6 @@ test_compile()
 
 test_valid_value()
 
-clean_executable(problem, reference)
 
 if not passed:
     sys.exit(1)

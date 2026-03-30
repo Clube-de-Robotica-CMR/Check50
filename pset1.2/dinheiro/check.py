@@ -249,7 +249,6 @@ test_10()
 test_25()
 test_random_value()
 
-clean_executable(problem, reference)
 
 if not passed:
     sys.exit(1)

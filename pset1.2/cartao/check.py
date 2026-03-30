@@ -214,7 +214,6 @@ test_VISA13()
 test_VISA16()
 test_invalid()
 
-clean_executable(problem, reference)
 
 if not passed:
     sys.exit(1)
