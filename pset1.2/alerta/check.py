@@ -97,7 +97,7 @@ def test_valid_value():
     global passed
 
     times = random.randint(1, 10)
-    expected_stdout = "BIP!\n" * times
+    expected_stdout = "Quantos alertas deseja emitir? \n" + "BIP!\n" * times
     expected_code = 0
 
     stdout, code, error = run_program(str(times))
@@ -105,17 +105,12 @@ def test_valid_value():
     if error:
         return print(f"{YELLOW} :| Teste com valor válido\n    {YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
     
-    stdout = stdout.split()
-    output = []
-    for i in range(4, len(stdout)):
-        output.append(stdout[i])
-    output = "".join(output)
 
-    condition = (expected_stdout.strip() in output.strip()) 
+    condition = (expected_stdout.strip() in stdout.strip()) 
 
     if not condition:
         passed = False
-        return print(f"{RED} :( Teste com valor válido\n    {RED} Esperava: \n{expected_stdout} \n    {RED} Recebeu: \n{output}{RESET}")
+        return print(f"{RED} :( Teste com valor válido\n    {RED} Esperava: \n{expected_stdout} \n    {RED} Recebeu: \n{stdout}{RESET}")
     
     print(f"{GREEN} :) Teste com valor válido{RESET}")
     
