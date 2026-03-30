@@ -115,7 +115,7 @@ def test_valid_value():
 
     if not condition:
         passed = False
-        return print(f"{RED} :( Teste com valor válido\n    {RED} Esperava: {expected_stdout} \n    {RED} Recebeu: {stdout}{RESET}")
+        return print(f"{RED} :( Teste com valor válido\n    {RED} Esperava: {expected_stdout} \n    {RED} Recebeu: {output}{RESET}")
     
     print(f"{GREEN} :) Teste com valor válido{RESET}")
     
@@ -126,7 +126,6 @@ test_compile()
 
 test_valid_value()
 
-clean_executable(problem, reference)
 
 if not passed:
     sys.exit(1)
