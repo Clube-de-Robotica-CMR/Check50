@@ -107,7 +107,7 @@ def test_valid_value():
     
     stdout = stdout.split()
     output = []
-    for i in range(1, len(stdout)):
+    for i in range(4, len(stdout)):
         output.append(stdout[i])
     output = "".join(output)
 
@@ -115,7 +115,7 @@ def test_valid_value():
 
     if not condition:
         passed = False
-        return print(f"{RED} :( Teste com valor válido\n    {RED} Esperava: {expected_stdout} \n    {RED} Recebeu: {output}{RESET}")
+        return print(f"{RED} :( Teste com valor válido\n    {RED} Esperava: \n{expected_stdout} \n    {RED} Recebeu: \n{output}{RESET}")
     
     print(f"{GREEN} :) Teste com valor válido{RESET}")
     
