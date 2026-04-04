@@ -110,7 +110,7 @@ def test_substitution_valid(text, key, expected, description):
 
     if not condition:
         passed = False
-        return print(f"{RED} :( {description}\n{TAB}{RED} Esperava: {expected}\n{description}{RED} Recebeu: {out}{RESET}")
+        return print(f"{RED} :( {description}\n{TAB}{RED} Esperava: {expected}\n{TAB}{RED} Recebeu: {out}{RESET}")
     
     print(f"{GREEN} :) {description}{RESET}")
 
