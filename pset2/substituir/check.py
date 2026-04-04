@@ -1,0 +1,154 @@
+import subprocess
+import os
+import sys
+import random
+
+# Códigos de cores ANSI
+GREEN = "\033[92m"
+RED = "\033[91m"
+YELLOW = "\033[93m"
+RESET = "\033[0m"  # Essencial para a cor não "vazar" para o resto do terminal
+BOLD = "\033[1m"
+TAB = "    "
+
+program = "substituir.c"
+problem = "substituir"
+required_files = ["substituir.c"]
+libs = ["lib/cs50.c", "-Ilib"]
+missing_files = []
+
+reference = ""
+
+passed = True
+
+def compile(file):
+    compile_cmd = ["gcc", program]
+    for cmd in libs:
+        compile_cmd.append(cmd)
+    
+    compile_cmd.append("-o")
+    compile_cmd.append(file)
+
+    return subprocess.run(
+        compile_cmd,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL
+        )
+
+def clean_executable(*files):
+    for file in files:
+        if os.path.exists(f"./{file}"):
+            os.remove(f"./{file}")
+
+def run_program(input="", input_cli=""):
+    clean_executable(problem)
+    compiled = compile(problem)
+    
+    if compiled.returncode != 0:
+        return None, None, True
+
+    commands = [f"./{problem}"]
+    if input_cli != "":
+        commands.append(input_cli)
+
+    result = subprocess.run(commands, input=input, capture_output=True, text=True)
+
+    return result.stdout, result.returncode, False
+
+def run_reference(input="", input_cli=""):
+    clean_executable(reference)
+    compiled = compile(reference)
+    
+    if compiled.returncode != 0:
+        return None, None, True
+
+    commands = [f"./{reference}"]
+    if input_cli != "":
+        commands.append(input_cli)
+
+    result = subprocess.run(commands, input=input, capture_output=True, text=True)
+
+    return result.stdout, result.returncode, False
+
+def test_files_exist():
+    for file in required_files:
+        if not os.path.exists(file):
+            missing_files.append(file)
+
+    if len(missing_files) != 0:
+        mfiles_str = ", ".join(missing_files)
+        print(f"{RED} :( O(s) arquivo(s) {mfiles_str} não existe(m) {RESET}")
+        return sys.exit(1)
+
+    files_str = ", ".join(required_files)
+    print(f"{GREEN} :) O(s) arquivo(s) {files_str} existe(m) {RESET}")
+
+def test_compile(check=True):
+    global passed
+    compiled = compile(problem)
+
+    if compiled.returncode != 0:
+        passed = False
+        if check: print(f"{RED} :( Um dos programas não compila\n    {RED} Esperava código de retorno 0, não {compiled.returncode} {RESET}")
+        return False
+    
+    if check: print(f"{GREEN} :) Os programas compilam {RESET}")
+    return True
+
+def test_substitution_valid(text, key, expected, description):
+    global passed
+
+    stdout, code, error = run_program(f"{text}\n", key)
+
+    if error:
+        return print(f"{YELLOW} :| {description}\n{TAB}{YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
+    
+    out = stdout.split()
+    out = out[-1]
+
+    condition =  expected in out
+
+    if not condition:
+        passed = False
+        return print(f"{RED} :( {description}\n{TAB}{RED} Esperava: {expected}\n{description}{RED} Recebeu: {out}{RESET}")
+    
+    print(f"{GREEN} :) {description}{RESET}")
+
+def test_substitution_invalid(key, exp_code, description, compiled):
+    global passed
+
+    stdout, code, error = run_program(input_cli=key)
+
+    if not compiled:
+        return print(f"{YELLOW} :| {description}\n{TAB}{YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
+
+    condition =  exp_code == code
+
+    if not condition:
+        passed = False
+        return print(f"{RED} :( {description}\n{TAB}{RED} Esperava código de retorno {exp_code}, não {code}{RESET}")
+    
+    print(f"{GREEN} :) {description}{RESET}")
+
+    
+    
+
+print("Verificando resultados...")
+test_files_exist()
+test_compile()
+
+test_substitution_invalid("", 1, "Teste com chave vazia", test_compile(check=False))
+test_substitution_invalid("ABC", 1, "Teste com chave com caracteres insuficientes", test_compile(check=False))
+test_substitution_invalid("VCHPRZGJNTLSKFBDQWAXEUYMO1", 1, "Teste com chave com caracteres inválidos", test_compile(check=False))
+test_substitution_invalid("VCHPRZGJNTLSKFBDQWAXEUYMOA", 1, "Teste com chave com caracteres repetidos", test_compile(check=False))
+
+test_substitution_valid("ABC", "ZYXWVUTSRQPONMLKJIHGFEDCBA", "ZYX", "Teste com chave simples")
+
+test_substitution_valid("A", "dwtyqmcslurjoxevhpfnabgkzi", "D", "Teste com chave em minúsculas")
+
+test_substitution_valid("Hello, World", "VCHPRZGJNTLSKFBDQWAXEUYMOI", "Jrssb, Ybwsp", "Teste de manutabilidade de caixa")
+
+test_substitution_valid("The quick brown fox jumps over the lazy dog", "NQXPOMAFTRHLZGECYJIUWSKVDB", "Ufo ywtxh qjekg mev rwzci esoj ufo lnbd pea", "Teste de alfabeto completo")
+
+if not passed:
+    sys.exit(1)
