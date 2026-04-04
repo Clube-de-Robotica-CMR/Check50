@@ -102,13 +102,12 @@ def test_scrabble(p1, p2, expected, description):
         return print(f"{YELLOW} :| {description}\n{TAB}{YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
     
     out = stdout.split()
-    out_str = stdout
-    if "Player 1:\nPlayer 2:" in stdout:
-        out_str = ""
-        for i in range (4, len(out)):
+    out_str = ""
+    for i in range (4, len(out)):
             out_str += f" {out[i]}"
 
-    out = out_str
+    if out_str: out = stdout
+    else: out = out_str
 
 
     condition =  expected in stdout
