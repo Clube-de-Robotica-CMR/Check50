@@ -106,7 +106,7 @@ def test_substitution_valid(text, key, expected, description):
     out = stdout.split()
     out = out[-1]
 
-    condition =  expected in out
+    condition =  expected == out
 
     if not condition:
         passed = False
