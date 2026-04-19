@@ -158,6 +158,7 @@ test_caesar_valid("HELLO", "52", "HELLO", "Teste de chave maior que o alfabeto 2
 
 test_caesar_valid("be sure to drink your Ovaltine", "13", "or fher gb qevax lbhe Binygvar", "Teste com frase completa")
 
+print("new")
 
 if not passed:
     sys.exit(1)
