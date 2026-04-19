@@ -104,7 +104,14 @@ def test_caesar_valid(text, key, expected, description):
         return print(f"{YELLOW} :| {description}\n{TAB}{YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
     
     out = stdout.split()
-    out = out[-1]
+    findex = out.index("Ciphertext:") + 1
+    tmp = []
+    for i in range(findex, len(out)):
+        tmp.append(out[i])
+
+    out = " ".join(tmp)
+
+    condition = expected == out
 
     condition =  expected == out
 
