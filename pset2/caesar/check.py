@@ -104,7 +104,7 @@ def test_caesar_valid(text, key, expected, description):
         return print(f"{YELLOW} :| {description}\n{TAB}{YELLOW} Não é possível checar até que a carinha vire um sorriso {RESET}")
     
     out = stdout.split()
-    findex = out.index("Ciphertext:") + 1
+    findex = out.index("ciphertext:") + 1
     tmp = []
     for i in range(findex, len(out)):
         tmp.append(out[i])
@@ -157,8 +157,6 @@ test_caesar_valid("a", "27", "b", "Teste de chave maior que o alfabeto 1")
 test_caesar_valid("HELLO", "52", "HELLO", "Teste de chave maior que o alfabeto 2")
 
 test_caesar_valid("be sure to drink your Ovaltine", "13", "or fher gb qevax lbhe Binygvar", "Teste com frase completa")
-
-print("new")
 
 if not passed:
     sys.exit(1)
